@@ -155,7 +155,7 @@
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-madrasah-green to-emerald-400">Berakhlak & Cerdas</span>
                 </h1>
                 <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
-                    Selamat datang di ruang digital <strong class="text-madrasah-dark">Kelas 5B MIN 12 Jakarta</strong>. Portal resmi untuk jadwal pelajaran dan struktur kelas kita.
+                    Selamat datang di ruang digital <strong class="text-madrasah-dark">Kelas 5B MIN 12 Jakarta</strong>. Portal resmi untuk jadwal pelajaran dan struktur kepemimpinan kelas.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
                     <a href="#jadwal" class="bg-madrasah-green text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-700 shadow-premium hover:shadow-premium-hover transition-all duration-300 transform hover:-translate-y-1 flex justify-center items-center gap-2">
@@ -229,7 +229,7 @@
             </div>
 
             <!-- Grid Pengurus (Dihasilkan dari JS) -->
-            <div id="pengurus-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 fade-in-up" style="animation-delay: 0.3s;">
+            <div id="pengurus-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 fade-in-up" style="animation-delay: 0.3s;">
                 <!-- Diisi oleh JS -->
             </div>
         </div>
@@ -276,7 +276,7 @@
                             </div>
                         </div>
 
-                        <!-- Ketua Card -->
+                        <!-- Ketua Info Card -->
                         <div class="flex items-center gap-4 group-hover:translate-x-1 transition-transform duration-300 delay-75 bg-black/20 p-3 rounded-xl">
                             <div class="w-10 h-10 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
                                 <i class="ph-fill ph-crown text-xl"></i>
@@ -398,8 +398,10 @@
             ]
         };
 
-        // --- 2. DATA PENGURUS (Hardcoded Sesuai Request) ---
+        // --- 2. DATA PENGURUS (Alika & Danish Ditambahkan!) ---
         const dataPengurus = [
+            { name: "Alika", role: "Ketua Kelas" },
+            { name: "Danish", role: "Wakil Ketua" },
             { name: "Alaric", role: "Bendahara" },
             { name: "Felix", role: "Sekretaris" },
             { name: "Rassya", role: "Keamanan" },
@@ -410,6 +412,8 @@
 
         // Format Warna Pengurus
         const roleColors = {
+            'Ketua Kelas': { bg: 'bg-emerald-100', text: 'text-emerald-700', icon: 'ph-crown' },
+            'Wakil Ketua': { bg: 'bg-blue-100', text: 'text-blue-700', icon: 'ph-star' },
             'Bendahara': { bg: 'bg-green-100', text: 'text-green-700', icon: 'ph-wallet' },
             'Sekretaris': { bg: 'bg-yellow-100', text: 'text-yellow-700', icon: 'ph-notebook' },
             'Keamanan': { bg: 'bg-red-100', text: 'text-red-700', icon: 'ph-shield-check' },
@@ -512,4 +516,4 @@
         });
     </script>
 </body>
-                        </html>
+                                                                                                  </html>
