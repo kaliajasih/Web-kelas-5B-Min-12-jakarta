@@ -229,7 +229,8 @@
             </div>
 
             <!-- Grid Pengurus (Dihasilkan dari JS) -->
-            <div id="pengurus-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 fade-in-up" style="animation-delay: 0.3s;">
+            <!-- Disesuaikan menjadi grid-cols-3 agar 9 pengurus pas dan simetris (3x3) -->
+            <div id="pengurus-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 fade-in-up" style="animation-delay: 0.3s;">
                 <!-- Diisi oleh JS -->
             </div>
         </div>
@@ -398,7 +399,7 @@
             ]
         };
 
-        // --- 2. DATA PENGURUS (Alika & Danish Ditambahkan!) ---
+        // --- 2. DATA PENGURUS (Alika, Danish, & Alfat Ditambahkan!) ---
         const dataPengurus = [
             { name: "Alika", role: "Ketua Kelas" },
             { name: "Danish", role: "Wakil Ketua" },
@@ -407,7 +408,8 @@
             { name: "Rassya", role: "Keamanan" },
             { name: "Kiara", role: "Editor Kelas" },
             { name: "Afifah", role: "Ketua Kebersihan" },
-            { name: "Nagata", role: "Wakil Kebersihan" }
+            { name: "Nagata", role: "Wakil Kebersihan" },
+            { name: "Alfat", role: "Humas" }
         ];
 
         // Format Warna Pengurus
@@ -420,6 +422,7 @@
             'Editor Kelas': { bg: 'bg-purple-100', text: 'text-purple-700', icon: 'ph-video-camera' },
             'Ketua Kebersihan': { bg: 'bg-lime-100', text: 'text-lime-700', icon: 'ph-broom' },
             'Wakil Kebersihan': { bg: 'bg-lime-50', text: 'text-lime-600', icon: 'ph-sparkle' },
+            'Humas': { bg: 'bg-cyan-100', text: 'text-cyan-700', icon: 'ph-megaphone' },
             'Default': { bg: 'bg-gray-100', text: 'text-gray-700', icon: 'ph-user' }
         };
 
@@ -516,4 +519,4 @@
         });
     </script>
 </body>
-                                                                                                  </html>
+                    </html>
