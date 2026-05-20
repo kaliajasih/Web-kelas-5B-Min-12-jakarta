@@ -14,43 +14,25 @@
                 extend: {
                     fontFamily: {
                         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
                     colors: {
                         madrasah: {
                             green: '#00875A',     
                             light: '#F0FAF4',     
                             dark: '#00422C',      
                             yellow: '#F6B900',    
-                        }
-                    },
                     boxShadow: {
                         'premium': '0 10px 30px -10px rgba(0, 135, 90, 0.15)',
                         'premium-hover': '0 20px 40px -15px rgba(0, 135, 90, 0.25)',
-                    }
-                }
-            }
-        }
     </script>
     <style>
         body {
             background-color: #FAFCFB;
             color: #1a202c;
-        }
         
         /* Custom Scrollbar Premium */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #F0FAF4; }
-        ::-webkit-scrollbar-thumb { background: #00875A; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #00422C; }
 
         /* Floating Animations */
-        .float-slow { animation: float 6s ease-in-out infinite; }
-        .float-fast { animation: float 4s ease-in-out infinite 1s; }
         @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
 
         /* Glassmorphism Navbar */
         .glass-nav {
@@ -58,13 +40,11 @@
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(0, 135, 90, 0.08);
-        }
         
         .glass-credit {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-        }
 
         /* Timeline Connector */
         .timeline-line {
@@ -74,22 +54,17 @@
             margin-top: 4px;
             margin-bottom: 4px;
             border-radius: 2px;
-        }
 
         .fade-in-up {
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0;
             transform: translateY(30px);
-        }
 
         @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
 
         /* Abstract Pattern */
         .islamic-pattern {
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300875a' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
     </style>
 </head>
 <body class="antialiased font-sans selection:bg-madrasah-green selection:text-white">
@@ -143,42 +118,21 @@
                 <p class="text-gray-600 font-medium text-lg">Baca kumpulan puisi indah karya siswa-siswi secara langsung dengan menggeser halaman.</p>
             </div>
 
-            <!-- PDF Viewer Container -->
+            <!-- PDF Viewer Container (Google Drive Embed) -->
             <div class="max-w-4xl mx-auto bg-gray-50 rounded-[2rem] p-4 md:p-8 shadow-premium border border-green-50 relative overflow-hidden fade-in-up" style="animation-delay: 0.1s;">
-                
-                <!-- Toolbar -->
-                <div class="flex items-center justify-between bg-white px-4 py-3 rounded-xl shadow-sm mb-6 border border-gray-100">
-                    <button id="prev-page" class="flex items-center gap-2 px-4 py-2 bg-madrasah-light text-madrasah-green rounded-lg hover:bg-madrasah-green hover:text-white transition-colors font-bold disabled:opacity-50 disabled:cursor-not-allowed">
-                        <i class="ph-bold ph-caret-left"></i> <span class="hidden sm:inline">Sebelumnya</span>
-                    </button>
-                    
-                    <div class="font-bold text-gray-700 bg-gray-100 px-4 py-2 rounded-lg">
-                        Halaman <span id="page-num" class="text-madrasah-green">1</span> dari <span id="page-count">?</span>
-                    </div>
-
-                    <button id="next-page" class="flex items-center gap-2 px-4 py-2 bg-madrasah-light text-madrasah-green rounded-lg hover:bg-madrasah-green hover:text-white transition-colors font-bold disabled:opacity-50 disabled:cursor-not-allowed">
-                        <span class="hidden sm:inline">Selanjutnya</span> <i class="ph-bold ph-caret-right"></i>
-                    </button>
+                <div class="relative w-full flex justify-center bg-white rounded-xl shadow-inner border border-gray-200 overflow-hidden" style="padding-top: 141.42%;">
+                    <!-- 141.42% adalah rasio aspek kertas A4 (1 / 1.4142) -->
+                    <iframe src="https://drive.google.com/file/d/1gbmL1lmvD9Fi3LPQBPnOf1NTBLqCNyka/preview" class="absolute top-0 left-0 w-full h-full border-0" allow="autoplay"></iframe>
                 </div>
-
-                <!-- Canvas Render -->
-                <div class="relative w-full flex justify-center bg-white rounded-xl shadow-inner border border-gray-200 overflow-auto min-h-[500px]" id="canvas-container">
-                    <canvas id="pdf-render" class="max-w-full h-auto drop-shadow-md"></canvas>
-                    <!-- Loading Indicator -->
-                    <div id="loading-indicator" class="absolute inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm z-10">
-                        <div class="flex flex-col items-center">
-                            <i class="ph-bold ph-spinner animate-spin text-4xl text-madrasah-green mb-2"></i>
-                            <p class="text-gray-600 font-bold animate-pulse">Memuat Dokumen...</p>
-                        </div>
-                    </div>
+                
+                <div class="mt-6 flex justify-center">
+                     <a href="https://drive.google.com/uc?export=download&id=1gbmL1lmvD9Fi3LPQBPnOf1NTBLqCNyka" target="_blank" class="inline-flex bg-madrasah-green text-white py-3 px-6 rounded-xl font-bold text-center hover:bg-emerald-700 transition-colors duration-300 items-center gap-2 shadow-sm">
+                            <i class="ph-bold ph-download-simple text-xl"></i> Unduh PDF Asli
+                     </a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Import PDF.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-
 
 <footer class="bg-madrasah-dark pt-16 pb-8 text-white relative border-t-4 border-madrasah-yellow overflow-hidden">
         <div class="absolute bottom-0 right-0 w-[40rem] h-[40rem] bg-madrasah-green rounded-full mix-blend-overlay filter blur-3xl opacity-20 pointer-events-none"></div>
@@ -260,128 +214,6 @@
     </footer>
 
     <script>
-
-        // PDF.js Implementation
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
-        const url = 'Puisi kelas 5B_20260520_121035_0000.pdf';
-
-        let pdfDoc = null,
-            pageNum = 1,
-            pageIsRendering = false,
-            pageNumIsPending = null;
-
-        const scale = 1.5,
-              canvas = document.querySelector('#pdf-render'),
-              ctx = canvas.getContext('2d'),
-              loadingIndicator = document.getElementById('loading-indicator');
-
-        // Render the page
-        const renderPage = num => {
-            pageIsRendering = true;
-            loadingIndicator.style.display = 'flex';
-
-            // Get page
-            pdfDoc.getPage(num).then(page => {
-                // Set scale based on container width to make it responsive
-                const container = document.getElementById('canvas-container');
-                const containerWidth = container.clientWidth - 32; // padding
-                const unscaledViewport = page.getViewport({ scale: 1 });
-                const currentScale = Math.min(scale, containerWidth / unscaledViewport.width);
-                const viewport = page.getViewport({ scale: currentScale });
-                
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-
-                const renderCtx = {
-                    canvasContext: ctx,
-                    viewport: viewport
-                };
-
-                page.render(renderCtx).promise.then(() => {
-                    pageIsRendering = false;
-                    loadingIndicator.style.display = 'none';
-
-                    if(pageNumIsPending !== null) {
-                        renderPage(pageNumIsPending);
-                        pageNumIsPending = null;
-                    }
-                });
-
-                // Output current page
-                document.querySelector('#page-num').textContent = num;
-                
-                // Update buttons state
-                document.querySelector('#prev-page').disabled = num <= 1;
-                document.querySelector('#next-page').disabled = num >= pdfDoc.numPages;
-            });
-        };
-
-        // Check for pages rendering
-        const queueRenderPage = num => {
-            if(pageIsRendering) {
-                pageNumIsPending = num;
-            } else {
-                renderPage(num);
-            }
-        };
-
-        // Show Prev Page
-        const showPrevPage = () => {
-            if(pageNum <= 1) return;
-            pageNum--;
-            queueRenderPage(pageNum);
-        };
-
-        // Show Next Page
-        const showNextPage = () => {
-            if(pageNum >= pdfDoc.numPages) return;
-            pageNum++;
-            queueRenderPage(pageNum);
-        };
-
-        // Get Document
-        pdfjsLib.getDocument(url).promise.then(pdfDoc_ => {
-            pdfDoc = pdfDoc_;
-            document.querySelector('#page-count').textContent = pdfDoc.numPages;
-            renderPage(pageNum);
-        }).catch(err => {
-            // Handle error, maybe file not found
-            console.error("Error Loading PDF: ", err);
-            loadingIndicator.innerHTML = `<div class="text-center p-6"><i class="ph-fill ph-warning-circle text-4xl text-red-500 mb-2"></i><p class="text-gray-800 font-bold">Gagal memuat PDF.</p><p class="text-sm text-gray-500">Pastikan file 'Puisi kelas 5B_20260520_121035_0000.pdf' ada di folder yang sama.</p></div>`;
-        });
-
-        // Button Events
-        document.querySelector('#prev-page').addEventListener('click', showPrevPage);
-        document.querySelector('#next-page').addEventListener('click', showNextPage);
-        
-        // Keyboard navigation (Geser dengan tombol panah keyboard)
-        document.addEventListener('keydown', (e) => {
-            if(e.key === 'ArrowLeft') showPrevPage();
-            if(e.key === 'ArrowRight') showNextPage();
-        });
-        
-        // Optional: Swipe support for touch devices
-        let touchstartX = 0;
-        let touchendX = 0;
-        
-        const canvasContainer = document.getElementById('canvas-container');
-        
-        canvasContainer.addEventListener('touchstart', e => {
-            touchstartX = e.changedTouches[0].screenX;
-        }, {passive: true});
-        
-        canvasContainer.addEventListener('touchend', e => {
-            touchendX = e.changedTouches[0].screenX;
-            handleGesture();
-        }, {passive: true});
-        
-        function handleGesture() {
-            if (touchendX < touchstartX - 50) showNextPage(); // Swiped left -> next page
-            if (touchendX > touchstartX + 50) showPrevPage(); // Swiped right -> prev page
-        }
-
-
         // Mobile Menu Toggle
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
