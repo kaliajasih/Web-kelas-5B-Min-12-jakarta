@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelas 5B - MIN 12 Jakarta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        madrasah: {
+                            green: '#00875A',     
+                            light: '#F0FAF4',     
+                            dark: '#00422C',      
+                            yellow: '#F6B900',    
+                        }
+                    },
+                    boxShadow: {
+                        'premium': '0 10px 30px -10px rgba(0, 135, 90, 0.15)',
+                        'premium-hover': '0 20px 40px -15px rgba(0, 135, 90, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAFCFB;
+            color: #1a202c;
+        }
+        
+        /* Custom Scrollbar Premium */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F0FAF4; }
+        ::-webkit-scrollbar-thumb { background: #00875A; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00422C; }
+
+        /* Floating Animations */
+        .float-slow { animation: float 6s ease-in-out infinite; }
+        .float-fast { animation: float 4s ease-in-out infinite 1s; }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Glassmorphism Navbar */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0, 135, 90, 0.08);
+        }
+        
+        .glass-credit {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* Timeline Connector */
+        .timeline-line {
+            width: 2px;
+            background: linear-gradient(to bottom, #E6F4EA 0%, #A7D7B5 100%);
+            flex-grow: 1;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            border-radius: 2px;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Abstract Pattern */
+        .islamic-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300875a' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="antialiased font-sans selection:bg-madrasah-green selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-madrasah-green to-emerald-500 flex items-center justify-center text-white font-black text-xl shadow-premium">
+                        5B
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-extrabold text-madrasah-dark tracking-tight">Kelas <span class="text-madrasah-green">5B</span></h1>
+                        <p class="text-xs text-emerald-600/80 font-bold uppercase tracking-wider">MIN 12 Jakarta</p>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#beranda" class="text-gray-600 hover:text-madrasah-green font-bold transition-colors duration-200">Beranda</a>
+                    <a href="#jadwal" class="text-gray-600 hover:text-madrasah-green font-bold transition-colors duration-200">Jadwal Kelas</a>
+                    <a href="#pengurus" class="text-gray-600 hover:text-madrasah-green font-bold transition-colors duration-200">Guru & Pengurus</a>
+                    <a href="#galeri" class="text-gray-600 hover:text-madrasah-green font-bold transition-colors duration-200">Galeri</a>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-madrasah-dark hover:text-madrasah-green focus:outline-none p-2 bg-madrasah-light rounded-full transition-colors">
+                        <i class="ph-bold ph-list text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-green-50 absolute w-full shadow-premium">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#beranda" class="block px-4 py-3 rounded-xl text-base font-bold text-gray-700 hover:bg-madrasah-light hover:text-madrasah-green transition-colors">Beranda</a>
+                <a href="#jadwal" class="block px-4 py-3 rounded-xl text-base font-bold text-gray-700 hover:bg-madrasah-light hover:text-madrasah-green transition-colors">Jadwal Kelas</a>
+                <a href="#pengurus" class="block px-4 py-3 rounded-xl text-base font-bold text-gray-700 hover:bg-madrasah-light hover:text-madrasah-green transition-colors">Guru & Pengurus</a>
+                <a href="#galeri" class="block px-4 py-3 rounded-xl text-base font-bold text-gray-700 hover:bg-madrasah-light hover:text-madrasah-green transition-colors">Galeri</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="beranda" class="pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden relative islamic-pattern">
+        <div class="absolute top-10 right-0 w-[500px] h-[500px] bg-emerald-300/20 rounded-full mix-blend-multiply filter blur-3xl opacity-50 float-slow pointer-events-none"></div>
+        <div class="absolute bottom-0 left-[-100px] w-[400px] h-[400px] bg-madrasah-yellow/20 rounded-full mix-blend-multiply filter blur-3xl opacity-50 float-fast pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto fade-in-up">
+                <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-green-100 text-madrasah-green font-bold text-sm mb-6 shadow-sm">
+                    <i class="ph-fill ph-student text-lg"></i>
+                    Tahun Ajaran 2025 - 2026
+                </div>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 tracking-tight leading-[1.1] mb-6">
+                    Membangun Generasi <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-madrasah-green to-emerald-400">Berakhlak & Cerdas</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
+                    Selamat datang di ruang digital <strong class="text-madrasah-dark">Kelas 5B MIN 12 Jakarta</strong>. Portal resmi untuk jadwal pelajaran dan struktur kepemimpinan kelas.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#jadwal" class="bg-madrasah-green text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-700 shadow-premium hover:shadow-premium-hover transition-all duration-300 transform hover:-translate-y-1 flex justify-center items-center gap-2">
+                        <i class="ph-bold ph-calendar-check text-xl"></i> Lihat Jadwal
+                    </a>
+                    <a href="#pengurus" class="bg-white text-madrasah-dark border-2 border-green-100 px-8 py-4 rounded-full font-bold text-lg hover:bg-madrasah-light hover:border-madrasah-green transition-all duration-300 flex justify-center items-center gap-2">
+                        <i class="ph-bold ph-users text-xl"></i> Lihat Pengurus
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="jadwal" class="py-24 bg-white relative border-t border-green-50">
+        <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 text-red-600 font-bold text-sm mb-4 border border-red-100">
+                    <i class="ph-fill ph-clock"></i> Diperbarui: Juli 2025
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-4">Jadwal Pelajaran Kelas 5B</h2>
+                <p class="text-gray-500 font-medium text-lg">Jadwal resmi terstruktur untuk tahun ajaran 2025 - 2026</p>
+            </div>
+
+            <div id="jadwal-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 fade-in-up" style="animation-delay: 0.2s;">
+                </div>
+        </div>
+    </section>
+
+    <section id="pengurus" class="py-24 bg-madrasah-light/50 relative border-t border-green-50 islamic-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 font-bold text-sm mb-4 border border-blue-100">
+                    <i class="ph-fill ph-shield-check"></i> Data Terkunci (Read-Only)
+                </div>
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Guru & Pengurus Kelas</h2>
+                <p class="text-gray-600 font-medium text-lg">Struktur kepemimpinan kelas 5B MIN 12 Jakarta.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 fade-in-up" style="animation-delay: 0.1s;">
+                <div class="bg-white rounded-[2rem] p-8 shadow-premium border border-green-50 flex items-center gap-6 hover:scale-[1.02] transition-transform duration-300">
+                    <div class="w-24 h-24 rounded-full bg-gradient-to-br from-emerald-500 to-madrasah-green p-1 shadow-lg shrink-0">
+                        <div class="w-full h-full bg-white rounded-full flex items-center justify-center">
+                            <i class="ph-fill ph-buildings text-4xl text-madrasah-green"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-emerald-600 uppercase tracking-widest mb-1">Kepala Madrasah</p>
+                        <h3 class="text-2xl font-black text-gray-900 mb-1">Hj. Hairunisah, M.Pd.</h3>
+                        <p class="text-gray-500 font-medium text-sm">NIP. -</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-[2rem] p-8 shadow-premium border border-green-50 flex items-center gap-6 hover:scale-[1.02] transition-transform duration-300">
+                    <div class="w-24 h-24 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 p-1 shadow-lg shrink-0">
+                        <div class="w-full h-full bg-white rounded-full flex items-center justify-center">
+                            <i class="ph-fill ph-chalkboard-teacher text-4xl text-orange-500"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-orange-600 uppercase tracking-widest mb-1">Wali Kelas V (Lima) B</p>
+                        <h3 class="text-2xl font-black text-gray-900 mb-1">Tirtayasari, S.Pd.I</h3>
+                        <p class="text-gray-500 font-medium text-sm">NIP. 198310102007102006</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="pengurus-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 fade-in-up" style="animation-delay: 0.3s;">
+                </div>
+        </div>
+    </section>
+
+    <section id="galeri" class="py-24 bg-white relative border-t border-green-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 text-purple-600 font-bold text-sm mb-4 border border-purple-100">
+                    <i class="ph-fill ph-images"></i> Galeri Karya
+                </div>
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Galeri Puisi Kelas 5B</h2>
+                <p class="text-gray-600 font-medium text-lg">Kumpulan karya sastra puisi indah persembahan dari siswa-siswi kelas 5B.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in-up" style="animation-delay: 0.1s;">
+                <!-- Card Puisi -->
+                <div class="bg-white rounded-[2rem] p-6 shadow-premium border border-green-50 hover:shadow-premium-hover hover:-translate-y-2 transition-all duration-300 flex flex-col h-full group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-madrasah-green/10 to-transparent rounded-bl-full -z-0"></div>
+                    
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mb-6 shadow-sm z-10">
+                        <i class="ph-fill ph-file-pdf"></i>
+                    </div>
+                    
+                    <h3 class="text-2xl font-black text-gray-900 mb-3 z-10 line-clamp-2">Kumpulan Puisi Kelas 5B</h3>
+                    <p class="text-gray-500 font-medium text-sm mb-6 flex-grow z-10">Dokumen PDF berisi antologi puisi karya siswa-siswi kelas 5B MIN 12 Jakarta tahun ajaran 2025-2026.</p>
+                    
+                    <div class="flex items-center gap-3 mt-auto z-10">
+                        <a href="https://drive.google.com/file/d/1gbmL1lmvD9Fi3LPQBPnOf1NTBLqCNyka/view?usp=sharing" target="_blank" class="flex-1 bg-madrasah-green text-white py-3 px-4 rounded-xl font-bold text-center hover:bg-emerald-700 transition-colors duration-300 flex items-center justify-center gap-2">
+                            <i class="ph-bold ph-eye text-lg"></i> Lihat Puisi
+                        </a>
+                        <a href="https://drive.google.com/uc?export=download&id=1gbmL1lmvD9Fi3LPQBPnOf1NTBLqCNyka" target="_blank" class="w-12 h-12 bg-green-50 text-madrasah-green rounded-xl flex items-center justify-center hover:bg-madrasah-green hover:text-white transition-colors duration-300">
+                            <i class="ph-bold ph-download-simple text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Placeholder untuk galeri selanjutnya -->
+                <div class="bg-gray-50 rounded-[2rem] p-6 border-2 border-dashed border-gray-200 flex flex-col items-center justify-center h-full min-h-[300px] text-gray-400 group hover:border-madrasah-green/30 hover:bg-madrasah-light/30 transition-colors duration-300">
+                    <i class="ph-bold ph-images text-5xl mb-4 group-hover:text-madrasah-green/50 transition-colors"></i>
+                    <p class="font-bold text-center group-hover:text-madrasah-green/70 transition-colors">Karya Selanjutnya<br>Akan Segera Hadir</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-madrasah-dark pt-16 pb-8 text-white relative border-t-4 border-madrasah-yellow overflow-hidden">
+        <div class="absolute bottom-0 right-0 w-[40rem] h-[40rem] bg-madrasah-green rounded-full mix-blend-overlay filter blur-3xl opacity-20 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10 border-b border-white/10 pb-10 items-center">
+                
+                <div class="flex flex-col justify-center">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-madrasah-green font-black text-2xl shadow-lg">
+                            5B
+                        </div>
+                        <div>
+                            <h4 class="font-black text-2xl tracking-tight">MIN 12 JAKARTA</h4>
+                            <p class="text-green-200 font-medium text-sm">Website Resmi Kelas 5B</p>
+                        </div>
+                    </div>
+                    <p class="text-green-100/60 text-sm mt-2 max-w-xs leading-relaxed">
+                        Mewujudkan generasi penerus yang cerdas, kreatif, dan berakhlakul karimah.
+                    </p>
+                </div>
+
+                <div class="glass-credit rounded-[1.5rem] p-6 border border-white/10 relative overflow-hidden group hover:border-emerald-400/50 transition-colors duration-500">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-madrasah-yellow"></div>
+                    <h5 class="text-green-300 font-black mb-4 text-xs uppercase tracking-[0.2em] text-center">Development Information</h5>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 group-hover:translate-x-1 transition-transform duration-300 bg-black/20 p-3 rounded-xl">
+                            <div class="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+                                <i class="ph-fill ph-code text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-green-100/60 uppercase tracking-wider font-bold mb-0.5">Owner / Pembuat Website</p>
+                                <p class="font-black text-white text-lg leading-none">Fathan</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 group-hover:translate-x-1 transition-transform duration-300 delay-75 bg-black/20 p-3 rounded-xl">
+                            <div class="w-10 h-10 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
+                                <i class="ph-fill ph-crown text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-green-100/60 uppercase tracking-wider font-bold mb-0.5">Ketua Info Class & School</p>
+                                <p class="font-black text-white text-lg leading-none">Alaric</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4 group-hover:translate-x-1 transition-transform duration-300 delay-150 bg-black/20 p-3 rounded-xl">
+                            <div class="w-10 h-10 rounded-full bg-yellow-500/20 border border-yellow-500/30 flex items-center justify-center text-yellow-400 shrink-0">
+                                <i class="ph-fill ph-users-three text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-green-100/60 uppercase tracking-wider font-bold mb-0.5">Info Class & School</p>
+                                <p class="font-bold text-white text-md leading-none">Murid² Kelas 5</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col justify-center md:items-end text-left md:text-right mt-6 md:mt-0">
+                    <div class="bg-black/20 rounded-2xl p-5 border border-white/5 inline-block">
+                        <div class="flex items-center md:justify-end gap-2 mb-2">
+                            <i class="ph-fill ph-map-pin text-red-400"></i>
+                            <p class="text-sm text-white font-bold">Jakarta, Indonesia</p>
+                        </div>
+                        <p class="text-xs text-green-100/70 font-medium mb-1">Update: 15 Juli 2025</p>
+                        <p class="text-xs text-green-100/70 font-medium">Tahun Ajaran: 2025 - 2026</p>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center flex flex-col items-center justify-center">
+                <p class="text-green-100/50 font-semibold text-sm flex items-center gap-1.5">
+                    © 2026 Copyright Kelas 5B MIN 12 Jakarta. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. DATA JADWAL PELAJARAN (Sesuai Gambar 100% + Revisi Hafalan & Kokurikuler) ---
+        const dataJadwal = {
+            "Senin": [
+                { w: "06.30 - 07.05", m: "Upacara", icon: "ph-flag", c: "text-red-600", bg: "bg-red-50" },
+                { w: "07.05 - 07.40", m: "Upacara", icon: "ph-flag", c: "text-red-600", bg: "bg-red-50" },
+                { w: "07.40 - 08.15", m: "Matematika", icon: "ph-math-operations", c: "text-blue-600", bg: "bg-blue-50" },
+                { w: "08.15 - 08.50", m: "Seni Budaya", icon: "ph-palette", c: "text-pink-600", bg: "bg-pink-50" },
+                { w: "08.50 - 09.25", m: "Seni Budaya", icon: "ph-palette", c: "text-pink-600", bg: "bg-pink-50" },
+                { w: "09.25 - 09.45", m: "Istirahat", icon: "ph-coffee", c: "text-yellow-600", bg: "bg-yellow-50", isBreak: true },
+                { w: "09.45 - 10.20", m: "IPAS", icon: "ph-flask", c: "text-purple-600", bg: "bg-purple-50" },
+                { w: "10.20 - 10.55", m: "IPAS", icon: "ph-flask", c: "text-purple-600", bg: "bg-purple-50" },
+                { w: "10.55 - 11.30", m: "Qur'an Hadits", icon: "ph-book-bookmark", c: "text-emerald-600", bg: "bg-emerald-50" },
+                { w: "11.30 - 12.00", m: "Qur'an Hadits", icon: "ph-book-bookmark", c: "text-emerald-600", bg: "bg-emerald-50" },
+                { w: "12.00 - 12.45", m: "Dhuhur", icon: "ph-mosque", c: "text-madrasah-green", bg: "bg-green-100", isBreak: true },
+                { w: "12.45 - 13.20", m: "Matematika", icon: "ph-math-operations", c: "text-blue-600", bg: "bg-blue-50" },
+                { w: "13.20 - 13.55", m: "Matematika", icon: "ph-math-operations", c: "text-blue-600", bg: "bg-blue-50" }
+            ],
+            "Selasa": [
+                { w: "06.30 - 07.05", m: "Senam", icon: "ph-person-simple-run", c: "text-orange-600", bg: "bg-orange-50" },
+                { w: "07.05 - 07.40", m: "PJOK", icon: "ph-sneaker", c: "text-orange-600", bg: "bg-orange-50" },
+                { w: "07.40 - 08.15", m: "PJOK", icon: "ph-sneaker", c: "text-orange-600", bg: "bg-orange-50" },
+                { w: "08.15 - 08.50", m: "Matematika", icon: "ph-math-operations", c: "text-blue-600", bg: "bg-blue-50" },
+                { w: "08.50 - 09.25", m: "Matematika", icon: "ph-math-operations", c: "text-blue-600", bg: "bg-blue-50" },
+                { w: "09.25 - 09.45", m: "Istirahat", icon: "ph-coffee", c: "text-yellow-600", bg: "bg-yellow-50", isBreak: true },
+                { w: "09.45 - 10.20", m: "B. Arab", icon: "ph-translate", c: "text-teal-600", bg: "bg-teal-50" },
+                { w: "10.20 - 10.55", m: "B. Arab", icon: "ph-translate", c: "text-teal-600", bg: "bg-teal-50" },
+                { w: "10.55 - 11.30", m: "P. Pancasila", icon: "ph-star", c: "text-yellow-600", bg: "bg-yellow-50" },
+                { w: "11.30 - 12.00", m: "P. Pancasila", icon: "ph-star", c: "text-yellow-600", bg: "bg-yellow-50" },
+                { w: "12.00 - 12.45", m: "Dhuhur", icon: "ph-mosque", c: "text-madrasah-green", bg: "bg-green-100", isBreak: true }
+            ],
+            "Rabu": [
+                { w: "06.30 - 07.05", m: "Pramuka", icon: "ph-tent", c: "text-amber-700", bg: "bg-amber-50" },
+                { w: "07.05 - 07.40", m: "Pramuka", icon: "ph-tent", c: "text-amber-700", bg: "bg-amber-50" },
+                { w: "07.40 - 08.15", m: "Kokurikuler", icon: "ph-puzzle-piece", c: "text-green-600", bg: "bg-green-50" },
+                { w: "08.15 - 08.50", m: "Kokurikuler", icon: "ph-puzzle-piece", c: "text-green-600", bg: "bg-green-50" },
+                { w: "08.50 - 09.25", m: "IPAS", icon: "ph-flask", c: "text-purple-600", bg: "bg-purple-50" },
+                { w: "09.25 - 09.45", m: "Istirahat", icon: "ph-coffee", c: "text-yellow-600", bg: "bg-yellow-50", isBreak: true },
+                { w: "09.45 - 10.20", m: "B. Indonesia", icon: "ph-book-open-text", c: "text-blue-600", bg: "bg-blue-50" },
+                { w: "10.20 - 10.55", m: "B. Indonesia", icon: "ph-book-open-text", c: "text-blue-600", bg: "bg-blue-50" },
+                { w: "10.55 - 11.30", m: "Aqidah Akhlaq", icon: "ph-hands-praying", c: "text-emerald-600", bg: "bg-emerald-50" },
+                { w: "11.30 - 12.00", m: "Aqidah Akhlaq", icon: "ph-hands-praying", c: "text-emerald-600", bg: "bg-emerald-50" },
+                { w: "12.00 - 12.45", m: "Dhuhur", icon: "ph-mosque", c: "text-madrasah-green", bg: "bg-green-100", isBreak: true },
+                { w: "12.45 - 13.20", m: "SKI", icon: "ph-scroll", c: "text-indigo-600", bg: "bg-indigo-50" },
+                { w: "13.20 - 13.55", m: "SKI", icon: "ph-scroll", c: "text-indigo-600", bg: "bg-indigo-50" }
+            ],
+            "Kamis": [
+                { w: "06.30 - 07.05", m: "Literasi/Numerasi", icon: "ph-books", c: "text-cyan-600", bg: "bg-cyan-50" },
+                { w: "07.05 - 07.40", m: "B. Indonesia", icon: "ph-book-open-text", c: "text-blue-600", bg: "bg-blue-50" },
+                { w: "07.40 - 08.15", m: "B. Indonesia", icon: "ph-book-open-text", c: "text-blue-600", bg: "bg-blue-50" },
+                { w: "08.15 - 08.50", m: "B. Inggris", icon: "ph-chats", c: "text-rose-600", bg: "bg-rose-50" },
+                { w: "08.50 - 09.25", m: "B. Inggris", icon: "ph-chats", c: "text-rose-600", bg: "bg-rose-50" },
+                { w: "09.25 - 09.45", m: "Istirahat", icon: "ph-coffee", c: "text-yellow-600", bg: "bg-yellow-50", isBreak: true },
+                { w: "09.45 - 10.20", m: "Fiqih", icon: "ph-hands-clapping", c: "text-emerald-600", bg: "bg-emerald-50" },
+                { w: "10.20 - 10.55", m: "Fiqih", icon: "ph-hands-clapping", c: "text-emerald-600", bg: "bg-emerald-50" },
+                { w: "10.55 - 11.30", m: "IPAS", icon: "ph-flask", c: "text-purple-600", bg: "bg-purple-50" },
+                { w: "11.30 - 12.00", m: "IPAS", icon: "ph-flask", c: "text-purple-600", bg: "bg-purple-50" },
+                { w: "12.00 - 12.45", m: "Dhuhur", icon: "ph-mosque", c: "text-madrasah-green", bg: "bg-green-100", isBreak: true },
+                { w: "12.45 - 13.20", m: "P. Pancasila", icon: "ph-star", c: "text-yellow-600", bg: "bg-yellow-50" },
+                { w: "13.20 - 13.55", m: "P. Pancasila", icon: "ph-star", c: "text-yellow-600", bg: "bg-yellow-50" }
+            ],
+            "Jum'at": [
+                { w: "06.30 - 07.05", m: "Literasi Qur'an", icon: "ph-book-open", c: "text-emerald-600", bg: "bg-emerald-50" },
+                { w: "07.05 - 07.40", m: "Literasi Qur'an", icon: "ph-book-open", c: "text-emerald-600", bg: "bg-emerald-50" },
+                { w: "07.40 - 08.15", m: "B. Indonesia", icon: "ph-book-open-text", c: "text-blue-600", bg: "bg-blue-50" },
+                { w: "08.15 - 08.50", m: "B. Indonesia", icon: "ph-book-open-text", c: "text-blue-600", bg: "bg-blue-50" },
+                { w: "08.50 - 09.25", m: "Hafalan Qur'an", icon: "ph-book-open", c: "text-emerald-600", bg: "bg-emerald-50" },
+                { w: "09.25 - 09.45", m: "Istirahat", icon: "ph-coffee", c: "text-yellow-600", bg: "bg-yellow-50", isBreak: true },
+                { w: "09.45 - 10.20", m: "Hafalan Qur'an", icon: "ph-book-open", c: "text-emerald-600", bg: "bg-emerald-50" },
+                { w: "10.20 - 10.55", m: "Hafalan Qur'an", icon: "ph-book-open", c: "text-emerald-600", bg: "bg-emerald-50" }
+            ]
+        };
+
+        // --- 2. DATA PENGURUS (Alika, Danish, & Alfat Ditambahkan!) ---
+        const dataPengurus = [
+            { name: "Alika", role: "Ketua Kelas" },
+            { name: "Danish", role: "Wakil Ketua" },
+            { name: "Alaric", role: "Bendahara" },
+            { name: "Felix", role: "Sekretaris" },
+            { name: "Rassya", role: "Keamanan" },
+            { name: "Kiara", role: "Editor Kelas" },
+            { name: "Afifah", role: "Ketua Kebersihan" },
+            { name: "Nagata", role: "Wakil Kebersihan" },
+            { name: "Alfat", role: "Humas" }
+        ];
+
+        // Format Warna Pengurus
+        const roleColors = {
+            'Ketua Kelas': { bg: 'bg-emerald-100', text: 'text-emerald-700', icon: 'ph-crown' },
+            'Wakil Ketua': { bg: 'bg-blue-100', text: 'text-blue-700', icon: 'ph-star' },
+            'Bendahara': { bg: 'bg-green-100', text: 'text-green-700', icon: 'ph-wallet' },
+            'Sekretaris': { bg: 'bg-yellow-100', text: 'text-yellow-700', icon: 'ph-notebook' },
+            'Keamanan': { bg: 'bg-red-100', text: 'text-red-700', icon: 'ph-shield-check' },
+            'Editor Kelas': { bg: 'bg-purple-100', text: 'text-purple-700', icon: 'ph-video-camera' },
+            'Ketua Kebersihan': { bg: 'bg-lime-100', text: 'text-lime-700', icon: 'ph-broom' },
+            'Wakil Kebersihan': { bg: 'bg-lime-50', text: 'text-lime-600', icon: 'ph-sparkle' },
+            'Humas': { bg: 'bg-cyan-100', text: 'text-cyan-700', icon: 'ph-megaphone' },
+            'Default': { bg: 'bg-gray-100', text: 'text-gray-700', icon: 'ph-user' }
+        };
+
+        // --- RENDER ENGINE JADWAL ---
+        const jadwalContainer = document.getElementById('jadwal-container');
+        
+        Object.keys(dataJadwal).forEach(hari => {
+            const jadwalHari = dataJadwal[hari];
+            
+            const col = document.createElement('div');
+            col.className = 'bg-white rounded-3xl p-5 shadow-premium border border-green-50 flex flex-col hover:-translate-y-2 transition-transform duration-300';
+            
+            const headerHari = document.createElement('div');
+            headerHari.className = 'bg-gradient-to-r from-madrasah-green to-emerald-500 text-white rounded-2xl py-3 text-center mb-6 shadow-md';
+            headerHari.innerHTML = `<h3 class="text-xl font-black">${hari}</h3>`;
+            col.appendChild(headerHari);
+
+            const timeline = document.createElement('div');
+            timeline.className = 'flex flex-col gap-0 h-full';
+
+            jadwalHari.forEach((item, index) => {
+                const isLast = index === jadwalHari.length - 1;
+                const borderClass = item.isBreak ? 'border-dashed border-2 border-yellow-200' : 'border border-transparent';
+                
+                const slot = document.createElement('div');
+                slot.className = `flex items-stretch gap-3 group`;
+                
+                const iconPart = document.createElement('div');
+                iconPart.className = 'flex flex-col items-center min-w-[32px]';
+                iconPart.innerHTML = `
+                    <div class="w-8 h-8 rounded-full ${item.bg} ${item.c} flex items-center justify-center shrink-0 z-10 ring-2 ring-white">
+                        <i class="ph-bold ${item.icon} text-sm"></i>
+                    </div>
+                    ${!isLast ? '<div class="timeline-line transition-all group-hover:bg-madrasah-green"></div>' : ''}
+                `;
+                
+                const infoPart = document.createElement('div');
+                infoPart.className = `flex-1 mb-4 p-3 rounded-xl hover:shadow-md transition-all duration-300 ${item.bg} bg-opacity-40 ${borderClass}`;
+                infoPart.innerHTML = `
+                    <p class="text-[11px] font-bold text-gray-400 mb-0.5 tracking-wider">${item.w}</p>
+                    <h4 class="text-[14px] font-black ${item.isBreak ? 'text-yellow-700' : 'text-gray-800'} leading-tight">${item.m}</h4>
+                `;
+
+                slot.appendChild(iconPart);
+                slot.appendChild(infoPart);
+                timeline.appendChild(slot);
+            });
+
+            col.appendChild(timeline);
+            jadwalContainer.appendChild(col);
+        });
+
+        // --- RENDER ENGINE PENGURUS ---
+        const pengurusContainer = document.getElementById('pengurus-container');
+        
+        dataPengurus.forEach(admin => {
+            const roleStyle = roleColors[admin.role] || roleColors['Default'];
+            const initial = admin.name.charAt(0).toUpperCase();
+
+            const card = document.createElement('div');
+            card.className = "bg-white rounded-[2rem] p-6 shadow-premium border border-green-50 hover:shadow-premium-hover hover:-translate-y-2 transition-all duration-300 text-center flex flex-col items-center relative overflow-hidden group";
+            
+            const bgCurve = document.createElement('div');
+            bgCurve.className = `absolute top-0 left-0 w-full h-24 ${roleStyle.bg} opacity-50 rounded-b-[50%] -z-0 group-hover:scale-110 transition-transform duration-500`;
+            
+            const content = `
+                <div class="w-20 h-20 rounded-full ${roleStyle.bg} border-4 border-white ${roleStyle.text} flex items-center justify-center text-3xl font-black mb-4 shadow-lg z-10 mt-2">
+                    ${initial}
+                </div>
+                <h4 class="text-xl font-black text-gray-800 mb-2 z-10 w-full truncate px-2">${admin.name}</h4>
+                <div class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white border border-gray-100 text-xs font-bold ${roleStyle.text} shadow-sm z-10">
+                    <i class="ph-bold ${roleStyle.icon}"></i>
+                    ${admin.role}
+                </div>
+            `;
+            
+            card.appendChild(bgCurve);
+            card.innerHTML += content;
+            pengurusContainer.appendChild(card);
+        });
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
