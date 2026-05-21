@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <script>
         tailwind.config = {
@@ -61,11 +62,36 @@
             transform: translateY(30px);
 
         @keyframes fadeInUp {
+/* Abstract Pattern */
+.islamic-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300875a' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
 
-        /* Abstract Pattern */
-        .islamic-pattern {
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300875a' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    </style>
+/* Swiper Customization */
+.swiper {
+    width: 100%;
+    height: 70vh;
+    min-height: 400px;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.swiper-slide img {
+    display: block;
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.swiper-pagination-bullet-active {
+    background-color: #00875A !important;
+}
+</style>
 </head>
 <body class="antialiased font-sans selection:bg-madrasah-green selection:text-white">
 
@@ -118,17 +144,23 @@
                 <p class="text-gray-600 font-medium text-lg">Baca kumpulan puisi indah karya siswa-siswi secara langsung dengan menggeser halaman.</p>
             </div>
 
-            <!-- PDF Viewer Container (Google Drive Embed) -->
+            <!-- Image Slider Container (Swiper.js) -->
             <div class="max-w-4xl mx-auto bg-gray-50 rounded-[2rem] p-4 md:p-8 shadow-premium border border-green-50 relative overflow-hidden fade-in-up" style="animation-delay: 0.1s;">
-                <div class="relative w-full flex justify-center bg-white rounded-xl shadow-inner border border-gray-200 overflow-hidden" style="padding-top: 141.42%;">
-                    <!-- 141.42% adalah rasio aspek kertas A4 (1 / 1.4142) -->
-                    <iframe src="https://drive.google.com/file/d/1gbmL1lmvD9Fi3LPQBPnOf1NTBLqCNyka/preview" class="absolute top-0 left-0 w-full h-full border-0" allow="autoplay"></iframe>
+                
+                <!-- Swiper -->
+                <div class="swiper mySwiper rounded-xl shadow-inner border border-gray-200 bg-white">
+                    <div class="swiper-wrapper" id="puisi-wrapper">
+                        <!-- Slides injected via JS -->
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- Add Navigation -->
+                    <div class="swiper-button-next" style="color: #00875A;"></div>
+                    <div class="swiper-button-prev" style="color: #00875A;"></div>
                 </div>
                 
-                <div class="mt-6 flex justify-center">
-                     <a href="https://drive.google.com/uc?export=download&id=1gbmL1lmvD9Fi3LPQBPnOf1NTBLqCNyka" target="_blank" class="inline-flex bg-madrasah-green text-white py-3 px-6 rounded-xl font-bold text-center hover:bg-emerald-700 transition-colors duration-300 items-center gap-2 shadow-sm">
-                            <i class="ph-bold ph-download-simple text-xl"></i> Unduh PDF Asli
-                     </a>
+                <div class="mt-4 text-center text-sm text-gray-500 font-medium">
+                    <i class="ph-bold ph-hand-swipe-left"></i> Geser layar atau tekan tombol panah untuk membalik halaman.
                 </div>
             </div>
         </div>
@@ -213,7 +245,49 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        // Generate Slides for Puisi (35 images)
+        const puisiWrapper = document.getElementById('puisi-wrapper');
+        if (puisiWrapper) {
+            for (let i = 1; i <= 35; i++) {
+                puisiWrapper.innerHTML += `
+                    <div class="swiper-slide">
+                        <img src="./puisi/${i}.png" alt="Puisi Halaman ${i}" loading="lazy">
+                        <div class="swiper-lazy-preloader swiper-lazy-preloader-green"></div>
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize Swiper
+        const swiper = new Swiper(".mySwiper", {
+            lazy: true,
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            keyboard: {
+                enabled: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
         // Mobile Menu Toggle
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
