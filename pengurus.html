@@ -279,81 +279,83 @@
 
         // --- RENDER ENGINE JADWAL ---
         const jadwalContainer = document.getElementById('jadwal-container');
-        
-        Object.keys(dataJadwal).forEach(hari => {
-            const jadwalHari = dataJadwal[hari];
-            
-            const col = document.createElement('div');
-            col.className = 'bg-white rounded-3xl p-5 shadow-premium border border-green-50 flex flex-col hover:-translate-y-2 transition-transform duration-300';
-            
-            const headerHari = document.createElement('div');
-            headerHari.className = 'bg-gradient-to-r from-madrasah-green to-emerald-500 text-white rounded-2xl py-3 text-center mb-6 shadow-md';
-            headerHari.innerHTML = `<h3 class="text-xl font-black">${hari}</h3>`;
-            col.appendChild(headerHari);
-
-            const timeline = document.createElement('div');
-            timeline.className = 'flex flex-col gap-0 h-full';
-
-            jadwalHari.forEach((item, index) => {
-                const isLast = index === jadwalHari.length - 1;
-                const borderClass = item.isBreak ? 'border-dashed border-2 border-yellow-200' : 'border border-transparent';
+        if (jadwalContainer) {
+            Object.keys(dataJadwal).forEach(hari => {
+                const jadwalHari = dataJadwal[hari];
                 
-                const slot = document.createElement('div');
-                slot.className = `flex items-stretch gap-3 group`;
+                const col = document.createElement('div');
+                col.className = 'bg-white rounded-3xl p-5 shadow-premium border border-green-50 flex flex-col hover:-translate-y-2 transition-transform duration-300';
                 
-                const iconPart = document.createElement('div');
-                iconPart.className = 'flex flex-col items-center min-w-[32px]';
-                iconPart.innerHTML = `
-                    <div class="w-8 h-8 rounded-full ${item.bg} ${item.c} flex items-center justify-center shrink-0 z-10 ring-2 ring-white">
-                        <i class="ph-bold ${item.icon} text-sm"></i>
-                    </div>
-                    ${!isLast ? '<div class="timeline-line transition-all group-hover:bg-madrasah-green"></div>' : ''}
-                `;
-                
-                const infoPart = document.createElement('div');
-                infoPart.className = `flex-1 mb-4 p-3 rounded-xl hover:shadow-md transition-all duration-300 ${item.bg} bg-opacity-40 ${borderClass}`;
-                infoPart.innerHTML = `
-                    <p class="text-[11px] font-bold text-gray-400 mb-0.5 tracking-wider">${item.w}</p>
-                    <h4 class="text-[14px] font-black ${item.isBreak ? 'text-yellow-700' : 'text-gray-800'} leading-tight">${item.m}</h4>
-                `;
+                const headerHari = document.createElement('div');
+                headerHari.className = 'bg-gradient-to-r from-madrasah-green to-emerald-500 text-white rounded-2xl py-3 text-center mb-6 shadow-md';
+                headerHari.innerHTML = `<h3 class="text-xl font-black">${hari}</h3>`;
+                col.appendChild(headerHari);
 
-                slot.appendChild(iconPart);
-                slot.appendChild(infoPart);
-                timeline.appendChild(slot);
+                const timeline = document.createElement('div');
+                timeline.className = 'flex flex-col gap-0 h-full';
+
+                jadwalHari.forEach((item, index) => {
+                    const isLast = index === jadwalHari.length - 1;
+                    const borderClass = item.isBreak ? 'border-dashed border-2 border-yellow-200' : 'border border-transparent';
+                    
+                    const slot = document.createElement('div');
+                    slot.className = `flex items-stretch gap-3 group`;
+                    
+                    const iconPart = document.createElement('div');
+                    iconPart.className = 'flex flex-col items-center min-w-[32px]';
+                    iconPart.innerHTML = `
+                        <div class="w-8 h-8 rounded-full ${item.bg} ${item.c} flex items-center justify-center shrink-0 z-10 ring-2 ring-white">
+                            <i class="ph-bold ${item.icon} text-sm"></i>
+                        </div>
+                        ${!isLast ? '<div class="timeline-line transition-all group-hover:bg-madrasah-green"></div>' : ''}
+                    `;
+                    
+                    const infoPart = document.createElement('div');
+                    infoPart.className = `flex-1 mb-4 p-3 rounded-xl hover:shadow-md transition-all duration-300 ${item.bg} bg-opacity-40 ${borderClass}`;
+                    infoPart.innerHTML = `
+                        <p class="text-[11px] font-bold text-gray-400 mb-0.5 tracking-wider">${item.w}</p>
+                        <h4 class="text-[14px] font-black ${item.isBreak ? 'text-yellow-700' : 'text-gray-800'} leading-tight">${item.m}</h4>
+                    `;
+
+                    slot.appendChild(iconPart);
+                    slot.appendChild(infoPart);
+                    timeline.appendChild(slot);
+                });
+
+                col.appendChild(timeline);
+                jadwalContainer.appendChild(col);
             });
-
-            col.appendChild(timeline);
-            jadwalContainer.appendChild(col);
-        });
+        }
 
         // --- RENDER ENGINE PENGURUS ---
         const pengurusContainer = document.getElementById('pengurus-container');
-        
-        dataPengurus.forEach(admin => {
-            const roleStyle = roleColors[admin.role] || roleColors['Default'];
-            const initial = admin.name.charAt(0).toUpperCase();
+        if (pengurusContainer) {
+            dataPengurus.forEach(admin => {
+                const roleStyle = roleColors[admin.role] || roleColors['Default'];
+                const initial = admin.name.charAt(0).toUpperCase();
 
-            const card = document.createElement('div');
-            card.className = "bg-white rounded-[2rem] p-6 shadow-premium border border-green-50 hover:shadow-premium-hover hover:-translate-y-2 transition-all duration-300 text-center flex flex-col items-center relative overflow-hidden group";
-            
-            const bgCurve = document.createElement('div');
-            bgCurve.className = `absolute top-0 left-0 w-full h-24 ${roleStyle.bg} opacity-50 rounded-b-[50%] -z-0 group-hover:scale-110 transition-transform duration-500`;
-            
-            const content = `
-                <div class="w-20 h-20 rounded-full ${roleStyle.bg} border-4 border-white ${roleStyle.text} flex items-center justify-center text-3xl font-black mb-4 shadow-lg z-10 mt-2">
-                    ${initial}
-                </div>
-                <h4 class="text-xl font-black text-gray-800 mb-2 z-10 w-full truncate px-2">${admin.name}</h4>
-                <div class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white border border-gray-100 text-xs font-bold ${roleStyle.text} shadow-sm z-10">
-                    <i class="ph-bold ${roleStyle.icon}"></i>
-                    ${admin.role}
-                </div>
-            `;
-            
-            card.appendChild(bgCurve);
-            card.innerHTML += content;
-            pengurusContainer.appendChild(card);
-        });
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-[2rem] p-6 shadow-premium border border-green-50 hover:shadow-premium-hover hover:-translate-y-2 transition-all duration-300 text-center flex flex-col items-center relative overflow-hidden group";
+                
+                const bgCurve = document.createElement('div');
+                bgCurve.className = `absolute top-0 left-0 w-full h-24 ${roleStyle.bg} opacity-50 rounded-b-[50%] -z-0 group-hover:scale-110 transition-transform duration-500`;
+                
+                const content = `
+                    <div class="w-20 h-20 rounded-full ${roleStyle.bg} border-4 border-white ${roleStyle.text} flex items-center justify-center text-3xl font-black mb-4 shadow-lg z-10 mt-2">
+                        ${initial}
+                    </div>
+                    <h4 class="text-xl font-black text-gray-800 mb-2 z-10 w-full truncate px-2">${admin.name}</h4>
+                    <div class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white border border-gray-100 text-xs font-bold ${roleStyle.text} shadow-sm z-10">
+                        <i class="ph-bold ${roleStyle.icon}"></i>
+                        ${admin.role}
+                    </div>
+                `;
+                
+                card.appendChild(bgCurve);
+                card.innerHTML += content;
+                pengurusContainer.appendChild(card);
+            });
+        }
 
         // Mobile Menu Toggle
         const mobileBtn = document.getElementById('mobile-menu-btn');
