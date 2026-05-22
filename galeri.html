@@ -34,19 +34,15 @@
 
         /* Floating Animations */
         @keyframes float {
+/* Glassmorphism Navbar */
+.glass-nav {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid rgba(0, 135, 90, 0.08);
+}
 
-        /* Glassmorphism Navbar */
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(0, 135, 90, 0.08);
-        
-        .glass-credit {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-
+.glass-credit {
+    background: rgba(255, 255, 255, 0.05);
+}
         /* Timeline Connector */
         .timeline-line {
             width: 2px;
@@ -83,11 +79,12 @@
     width: 300px; /* Nilai default mutlak untuk mencegah bug layout */
     max-width: 85vw;
 }
-.swiper-slide img {    display: block;
+.swiper-slide img {
+    display: block;
     width: auto;
     height: 100%;
     object-fit: contain;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    content-visibility: auto; /* Optimasi render browser */
 }
 .swiper-pagination-bullet-active {
     background-color: #00875A !important;
@@ -179,8 +176,7 @@
     </section>
 
 <footer class="bg-madrasah-dark pt-16 pb-8 text-white relative border-t-4 border-madrasah-yellow overflow-hidden">
-        <div class="absolute bottom-0 right-0 w-[40rem] h-[40rem] bg-madrasah-green rounded-full mix-blend-overlay filter blur-3xl opacity-20 pointer-events-none"></div>
-
+    <div class="absolute bottom-0 right-0 w-[40rem] h-[40rem] bg-madrasah-green rounded-full opacity-10 pointer-events-none"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10 border-b border-white/10 pb-10 items-center">
                 
@@ -276,19 +272,12 @@
 
         // Initialize Swiper
         const swiper = new Swiper(".mySwiper", {
-            effect: "coverflow",
             grabCursor: true,
             centeredSlides: true,
             slidesPerView: "auto",
+            spaceBetween: 20,
             preloadImages: false,
             watchSlidesProgress: true,
-            coverflowEffect: {
-                rotate: 50,
-                stretch: 0,
-                depth: 100,
-                modifier: 1,
-                slideShadows: false,
-            },
             keyboard: {
                 enabled: true,
             },
@@ -305,8 +294,6 @@
 
         // Data Teks Puisi (Anda bisa mengedit isi teks di bawah ini sesuai gambar)
         const puisiData = [
-            { title: "KELAS 5B", text: `KELAS 5B\nPUISI\nCreated By: Fathan & Alaric` },
-            { title: "FUNFACT IBU KARTINI", text: `FUNFACT IBU KARTINI\n\nRaden Ajeng Kartini, kemudian dikenal sebagai Raden Ayu Kartini (21 April 1879 – 17\nSeptember 1904), ia merupakan tokoh perempuan asal Jawa dan pahlawan nasional\nIndonesia. Kartini dikenal sebagai sosok pejuang yang gigih memperjuangkan\nkemerdekaan dan kedudukan kaumnya, pada saat itu terutama wanita Jawa. Ia dilahirkan\ndalam keluarga bangsawan Jawa di Hindia Belanda (sekarang Indonesia). Setelah\nbersekolah di sekolah dasar berbahasa Belanda, ia ingin melanjutkan pendidikan lebih\nlanjut, tetapi perempuan Jawa saat itu dilarang mengenyam pendidikan tinggi. Ia bertemu\ndengan berbagai pejabat dan orang berpengaruh, termasuk J.H. Abendanon, yang\nbertugas melaksanakan Kebijakan Etis Belanda.\n\nSetelah kematiannya, saudara perempuannya melanjutkan perjuangannya untuk mendidik\nanak perempuan dan perempuan. Surat-surat Kartini diterbitkan di sebuah majalah\nBelanda dan akhirnya, pada tahun 1911, menjadi karya: Habis Gelap Terbitlah Terang,\nKehidupan Perempuan di Desa, dan Surat-Surat Putri Jawa. Ulang tahunnya sekarang\ndirayakan di Indonesia sebagai Hari Kartini untuk menghormatinya, serta beberapa\nsekolah dinamai menurut namanya dan sebuah yayasan didirikan atas namanya untuk\nmembiayai pendidikan anak perempuan bangsa Indonesia.\n\nLahir: 21 April 1879, Jepara, Hindia Belanda\nMeninggal: 17 September 1904 (umur 25), Rembang, Hindia Belanda\nMakam: Bulu, Rembang, Indonesia\nNama lain: Raden Ayu Kartini\nDikenal atas: Emansipasi wanita; pahlawan nasional\nSuami/istri: Adipati Ario Singgih Djojoadhiningrat (m. 1903)\nAnak: Soesalit Djojoadhiningrat\nPenghargaan: Pahlawan Nasional Indonesia, S.K. Presiden No. 108/TK/1964 tanggal 2 Mei 1964\n\nHari Kartini\nMakam R.A. Kartini di Bulu, Rembang.\n\nPresiden Soekarno mengeluarkan Keputusan Presiden Republik Indonesia Nomor 108 Tahun 1964, tanggal 2\nMei 1964, yang menetapkan Kartini sebagai Pahlawan Kemerdekaan Nasional sekaligus menetapkan hari lahir\nKartini, tanggal 21 April, untuk diperingati setiap tahun sebagai hari besar yang kemudian dikenal sebagai Hari\nKartini.\n\nPemerintahan Orde Lama Soekarno mendeklarasikan 21 April sebagai Hari Kartini untuk mengingatkan\nperempuan bahwa mereka harus berpartisipasi dalam \"wacana negara hegemonik pembangunan\". Namun,\nsetelah tahun 1965, pemerintahan Orde Baru Soeharto mengubah citra Kartini dari emansipator wanita radikal\nmenjadi citra yang menggambarkannya sebagai istri yang patuh dan putri yang patuh, \"sebagai hanya seorang\nwanita berpakaian kebaya yang bisa memasak.\" Pada kesempatan itu, yang dikenal sebagai Hari Ibu Kartini,\n\"gadis-gadis muda harus mengenakan jaket ketat yang pas, kemeja batik, gaya rambut yang rumit, dan\nperhiasan berornamen ke sekolah, yang seharusnya meniru pakaian Kartini tetapi dalam kenyataannya,\nmengenakan pakaian ciptaan, dan ansambel yang lebih ketat daripada yang pernah dia lakukan.\"` },
             { title: "Wanita Berdaya di Era Modern", text: `Nama: Afifah Kamilah Octavia\nAbsen: 1\nJudul: Wanita Berdaya di Era Modern\n\nBukan lagi berkutat di balik tirai pintu,\nWanita kini melangkah dengan tutur terukur,\nMembawa mimpi setinggi langit biru,\nPatahkan stigma, melaju tanpa ragu.\n\nTangan halus itu tak hanya membuai mimpi,\nTapi memegang pena, teknologi, dan kursi karier,\nDengan akal cerdas, ia memimpin aksi,\nMenjadi pelita di tengah zaman yang makin modern.\n\nHabis gelap kini telah terbit terang,\nPerjuangan Kartini tak lagi terpasung zaman,\nDi dunia pendidikan, ia berdiri tegak,\nMerancang masa depan bangsa dengan penuh ketekunan.\n\nLelah di siang, terjaga di malam hari,\nAntara tanggung jawab kerja dan hangatnya rumah,\nIa tangguh, tak kenal putus asa diri,\nMenjadi ibu, menjadi pemimpin, tak pernah menyerah.\n\nWahai wanita, teruslah berkarya dan berdaya,\nKemandirian adalah mahkota terindahmu,\nDi era digital, jadilah generasi yang kaya,\nKaya karya, budi, dan semangat yang tak pernah semu.` },
             { title: "Nahkoda Kehidupan", text: `Nama: Afiqa Ranaya Annazwa\nAbsen: 2\nJudul: Nahkoda Kehidupan\n\nDi antara bising deru Ibu Kota langkahmu tak pernah kenal jeda menembus\nbatas yang dulu tabu merajut mimpi tanpa ragu.\n\nTangan lembutmu memeluk dunia menjadi nahkoda di berbagai asa, siang\nkau arungi ruang-ruang karya, malam kau jaga hangatnya keluarga.\n\nBukan lagi tentang belenggu masa lalu ini tentang pijar dan nyala barumu\nmenjadi arsitek bagi peradaban menembus gelap, memecah kebimbangan.\n\nTeruslah melangkah, perempuan tangguh suaramu adalah pena, langkahmu\nadalah peluh di pundakmu, dunia belajar arti berjuang habis gelap,\nterangmu kian benderang.` },
             { title: "Perjuangan Wanita Masa Kini", text: `Nama: Aira Shanum Azzalea\nAbsen: 3\nJudul: Perjuangan Wanita Masa Kini\n\nzaman sudah banyak berubah\nwanita ini tak lagi lemah\nbisa sekolah, bisa bekerja\nmengejar mimpi sampai kemana saja\n\nmempunyai nyali sekuat batu\nbisa mandiri di setiap waktu\ntak perlu ragu\nkarna dunia telah menunggu mu\n\ncerdas di otak baik di hati\nsemua rintangan akan terlewati\nbisa memimpin, bisa mengabdi\nhebat berkarya untuk negeri\n\njadilah kuat, jadilah hebat\njangan biarkan semangatmu tamat\nteruslah maju tanpa henti\nwanita tangguh dimasa kini` },
