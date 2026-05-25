@@ -6,7 +6,7 @@
     <title>Kelas 5B - MIN 12 Jakarta</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script data-cfasync="false" src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <script>
@@ -132,46 +132,120 @@
     </nav>
 
 
-    <section id="galeri" class="py-24 bg-white relative border-t border-green-50 pt-32 lg:pt-40">
+        <section id="galeri" class="py-24 bg-white relative border-t border-green-50 pt-32 lg:pt-40 min-h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in-up">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 text-purple-600 font-bold text-sm mb-4 border border-purple-100">
-                    <i class="ph-fill ph-book-open"></i> Penampil Puisi
+            
+            <!-- VIEW: DAFTAR GALERI (Muncul jika tidak ada parameter ?id=) -->
+            <div id="view-list" class="hidden fade-in-up">
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-600 font-bold text-sm mb-4 border border-emerald-100">
+                        <i class="ph-fill ph-images"></i> Katalog Karya
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Galeri Karya 5B</h2>
+                    <p class="text-gray-600 font-medium text-lg">Pilih koleksi karya atau dokumentasi untuk melihat lebih detail.</p>
                 </div>
-                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Karya Sastra Kelas 5B</h2>
-                <p class="text-gray-600 font-medium text-lg">Baca kumpulan puisi indah karya siswa-siswi secara langsung dengan menggeser halaman.</p>
+
+                <div class="max-w-3xl mx-auto space-y-4">
+                    <!-- Item: Puisi -->
+                    <a href="?id=puisi" class="group bg-white rounded-2xl p-5 shadow-sm hover:shadow-premium border border-gray-100 hover:border-madrasah-green/30 transition-all duration-300 flex items-center gap-5 cursor-pointer">
+                        <div class="w-16 h-16 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+                            <i class="ph-fill ph-book-open text-3xl"></i>
+                        </div>
+                        <div class="flex-1 text-left">
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-madrasah-green transition-colors">Antologi Puisi 5B</h3>
+                            <p class="text-gray-500 text-sm mt-1">Kumpulan 33 karya puisi indah persembahan dari siswa-siswi kelas 5B.</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-madrasah-green group-hover:text-white transition-colors shrink-0">
+                            <i class="ph-bold ph-caret-right"></i>
+                        </div>
+                    </a>
+
+                    <!-- Item: Video Celengan -->
+                    <a href="?id=video-celengan" class="group bg-white rounded-2xl p-5 shadow-sm hover:shadow-premium border border-gray-100 hover:border-madrasah-green/30 transition-all duration-300 flex items-center gap-5 cursor-pointer">
+                        <div class="w-16 h-16 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                            <i class="ph-fill ph-video-camera text-3xl"></i>
+                        </div>
+                        <div class="flex-1 text-left">
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-madrasah-green transition-colors">Kreativitas Celengan</h3>
+                            <p class="text-gray-500 text-sm mt-1">Dokumentasi video hasil karya kerajinan tangan celengan siswa-siswi kelas 5B.</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-madrasah-green group-hover:text-white transition-colors shrink-0">
+                            <i class="ph-bold ph-caret-right"></i>
+                        </div>
+                    </a>
+                </div>
             </div>
 
-            <!-- Image Slider Container (Swiper.js) -->
-            <div class="max-w-4xl mx-auto bg-gray-50 rounded-[2rem] p-4 md:p-8 shadow-premium border border-green-50 relative overflow-hidden fade-in-up" style="animation-delay: 0.1s;">
-                
-                <!-- Swiper -->
-                <div class="swiper mySwiper rounded-xl shadow-inner border border-gray-200 bg-white">
-                    <div class="swiper-wrapper" id="puisi-wrapper">
-                        <!-- Slides injected via JS -->
-                    </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination"></div>
-                    <!-- Add Navigation -->
-                    <div class="swiper-button-next" style="color: #00875A;"></div>
-                    <div class="swiper-button-prev" style="color: #00875A;"></div>
+            <!-- VIEW: PUISI (Muncul jika ?id=puisi) -->
+            <div id="view-puisi" class="hidden fade-in-up">
+                <div class="max-w-4xl mx-auto mb-6">
+                    <a href="galeri.html" class="inline-flex items-center gap-2 text-gray-500 hover:text-madrasah-green font-bold bg-white px-4 py-2 rounded-full border border-gray-200 shadow-sm transition-colors">
+                        <i class="ph-bold ph-arrow-left"></i> Kembali ke Katalog
+                    </a>
                 </div>
                 
-                <div class="mt-4 text-center text-sm text-gray-500 font-medium">
-                    <i class="ph-bold ph-hand-swipe-left"></i> Geser layar atau tekan tombol panah untuk membalik halaman.
-                </div>
-                
-                <!-- Teks Deskripsi Puisi Container -->
-                <div class="mt-8 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 text-left transition-all duration-300">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-600 font-bold text-xs mb-3 border border-emerald-100">
-                        <i class="ph-fill ph-text-align-left"></i> Teks Puisi
+                <div class="text-center mb-10">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-50 text-purple-600 font-bold text-sm mb-4 border border-purple-100">
+                        <i class="ph-fill ph-book-open"></i> Penampil Puisi
                     </div>
-                    <h3 id="puisi-title" class="text-xl md:text-2xl font-black text-gray-900 mb-3">Memuat...</h3>
-                    <div id="puisi-text" class="text-gray-600 whitespace-pre-line leading-relaxed text-base md:text-lg">
-                        Silakan geser gambar di atas untuk melihat teks puisi.
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">Antologi Puisi Kelas 5B</h2>
+                    <p class="text-gray-600 font-medium text-lg">Geser layar untuk membaca puisi selanjutnya.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto bg-gray-50 rounded-[2rem] p-4 md:p-8 shadow-premium border border-green-50 relative overflow-hidden">
+                    
+                    <div class="swiper mySwiper rounded-xl shadow-inner border border-gray-200 bg-white">
+                        <div class="swiper-wrapper" id="puisi-wrapper">
+                            <!-- Slides injected via JS -->
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next" style="color: #00875A;"></div>
+                        <div class="swiper-button-prev" style="color: #00875A;"></div>
+                    </div>
+                    
+                    <div class="mt-4 text-center text-sm text-gray-500 font-medium">
+                        <i class="ph-bold ph-hand-swipe-left"></i> Geser layar atau tekan tombol panah untuk membalik halaman.
+                    </div>
+                    
+                    <div class="mt-8 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 text-left transition-all duration-300">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-600 font-bold text-xs mb-3 border border-emerald-100">
+                            <i class="ph-fill ph-text-align-left"></i> Teks Puisi
+                        </div>
+                        <h3 id="puisi-title" class="text-xl md:text-2xl font-black text-gray-900 mb-3">Memuat...</h3>
+                        <div id="puisi-text" class="text-gray-600 whitespace-pre-line leading-relaxed text-base md:text-lg">
+                            Silakan geser gambar di atas untuk melihat teks puisi.
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- VIEW: VIDEO CELENGAN (Muncul jika ?id=video-celengan) -->
+            <div id="view-video" class="hidden fade-in-up">
+                <div class="max-w-4xl mx-auto mb-6">
+                    <a href="galeri.html" class="inline-flex items-center gap-2 text-gray-500 hover:text-madrasah-green font-bold bg-white px-4 py-2 rounded-full border border-gray-200 shadow-sm transition-colors">
+                        <i class="ph-bold ph-arrow-left"></i> Kembali ke Katalog
+                    </a>
+                </div>
+                
+                <div class="max-w-4xl mx-auto bg-white rounded-[2rem] p-4 md:p-8 shadow-premium border border-green-50 relative overflow-hidden">
+                    <div class="rounded-xl overflow-hidden shadow-inner border border-gray-100 bg-black aspect-video flex items-center justify-center">
+                        <video controls class="w-full h-full object-contain" preload="metadata">
+                            <source src="assets/video/celengan/dokumen-website-kls5b-galeri.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung tag video.
+                        </video>
+                    </div>
+                    <div class="mt-8 text-left">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 font-bold text-xs mb-3 border border-blue-100">
+                            <i class="ph-fill ph-video-camera"></i> Dokumentasi Video
+                        </div>
+                        <h3 class="text-2xl font-black text-gray-900 mb-3">Kreativitas Membuat Celengan</h3>
+                        <p class="text-gray-600 leading-relaxed text-lg">
+                            Video dokumentasi singkat yang menampilkan kreativitas siswa-siswi kelas 5B MIN 12 Jakarta dalam membuat kerajinan tangan berbentuk celengan. Karya ini dibuat dengan berbagai macam bentuk, warna, dan tema yang menarik.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -255,14 +329,32 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Generate Slides for Puisi (33 images)
+                // --- LOGIKA ROUTING GALERI ---
+        const urlParams = new URLSearchParams(window.location.search);
+        const viewId = urlParams.get('id');
+
+        const viewList = document.getElementById('view-list');
+        const viewPuisi = document.getElementById('view-puisi');
+        const viewVideo = document.getElementById('view-video');
+
+        if (viewId === 'puisi') {
+            viewPuisi.classList.remove('hidden');
+            initPuisi();
+        } else if (viewId === 'video-celengan') {
+            viewVideo.classList.remove('hidden');
+        } else {
+            viewList.classList.remove('hidden');
+        }
+
+        function initPuisi() {
+            // Generate Slides for Puisi (33 images)
         const puisiWrapper = document.getElementById('puisi-wrapper');
         if (puisiWrapper) {
             let slidesHTML = '';
             for (let i = 1; i <= 33; i++) {
                 slidesHTML += `
                     <div class="swiper-slide">
-                        <img src="./puisi/${i}.png" alt="Puisi Halaman ${i}" loading="lazy">
+                        <img src="assets/gambar/puisi/${i}.png" alt="Puisi Halaman ${i}" loading="lazy">
                         <div class="swiper-lazy-preloader swiper-lazy-preloader-green"></div>
                     </div>
                 `;
@@ -348,6 +440,8 @@
         swiper.on('slideChange', function () {
             updatePuisiText(swiper.activeIndex);
         });
+
+        }
 
         // Mobile Menu Toggle
         const mobileBtn = document.getElementById('mobile-menu-btn');
