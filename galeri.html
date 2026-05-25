@@ -152,7 +152,7 @@
                             <i class="ph-fill ph-book-open text-3xl"></i>
                         </div>
                         <div class="flex-1 text-left">
-                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-madrasah-green transition-colors">Antologi Puisi 5B</h3>
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-madrasah-green transition-colors">Karya Puisi</h3>
                             <p class="text-gray-500 text-sm mt-1">Kumpulan 33 karya puisi indah persembahan dari siswa-siswi kelas 5B.</p>
                         </div>
                         <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-madrasah-green group-hover:text-white transition-colors shrink-0">
@@ -160,14 +160,28 @@
                         </div>
                     </a>
 
-                    <!-- Item: Video Celengan -->
-                    <a href="?id=video-celengan" class="group bg-white rounded-2xl p-5 shadow-sm hover:shadow-premium border border-gray-100 hover:border-madrasah-green/30 transition-all duration-300 flex items-center gap-5 cursor-pointer">
+                    <!-- Item: Video SBDP -->
+                    <a href="?id=video-sbdp" class="group bg-white rounded-2xl p-5 shadow-sm hover:shadow-premium border border-gray-100 hover:border-madrasah-green/30 transition-all duration-300 flex items-center gap-5 cursor-pointer">
                         <div class="w-16 h-16 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
                             <i class="ph-fill ph-video-camera text-3xl"></i>
                         </div>
                         <div class="flex-1 text-left">
-                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-madrasah-green transition-colors">Kreativitas Celengan</h3>
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-madrasah-green transition-colors">Karya Project SBDP</h3>
                             <p class="text-gray-500 text-sm mt-1">Dokumentasi video hasil karya kerajinan tangan celengan siswa-siswi kelas 5B.</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-madrasah-green group-hover:text-white transition-colors shrink-0">
+                            <i class="ph-bold ph-caret-right"></i>
+                        </div>
+                    </a>
+
+                    <!-- Item: Project Kokurikuler -->
+                    <a href="?id=kokurikuler" class="group bg-white rounded-2xl p-5 shadow-sm hover:shadow-premium border border-gray-100 hover:border-madrasah-green/30 transition-all duration-300 flex items-center gap-5 cursor-pointer">
+                        <div class="w-16 h-16 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                            <i class="ph-fill ph-camera text-3xl"></i>
+                        </div>
+                        <div class="flex-1 text-left">
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:text-madrasah-green transition-colors">Project Kokurikuler</h3>
+                            <p class="text-gray-500 text-sm mt-1">Kumpulan potret kegiatan dan hasil karya siswa-siswi kelas 5B dalam project kokurikuler.</p>
                         </div>
                         <div class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-madrasah-green group-hover:text-white transition-colors shrink-0">
                             <i class="ph-bold ph-caret-right"></i>
@@ -219,29 +233,94 @@
                 </div>
             </div>
 
-            <!-- VIEW: VIDEO CELENGAN (Muncul jika ?id=video-celengan) -->
-            <div id="view-video" class="hidden fade-in-up">
+            <!-- VIEW: VIDEO SBDP (Muncul jika ?id=video-sbdp) -->
+            <div id="view-video-sbdp" class="hidden fade-in-up">
                 <div class="max-w-4xl mx-auto mb-6">
                     <a href="galeri.html" class="inline-flex items-center gap-2 text-gray-500 hover:text-madrasah-green font-bold bg-white px-4 py-2 rounded-full border border-gray-200 shadow-sm transition-colors">
                         <i class="ph-bold ph-arrow-left"></i> Kembali ke Katalog
                     </a>
                 </div>
                 
-                <div class="max-w-4xl mx-auto bg-white rounded-[2rem] p-4 md:p-8 shadow-premium border border-green-50 relative overflow-hidden">
-                    <div class="rounded-xl overflow-hidden shadow-inner border border-gray-100 bg-black aspect-video flex items-center justify-center">
+                <div class="max-w-4xl mx-auto bg-white rounded-[2rem] p-4 md:p-8 shadow-premium border border-green-50 relative overflow-hidden mb-8">
+                    <div class="text-center mb-8">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 font-bold text-xs mb-3 border border-blue-100">
+                            <i class="ph-fill ph-video-camera"></i> Project SBDP
+                        </div>
+                        <h3 class="text-3xl font-black text-gray-900 mb-2">Karya Project SBDP</h3>
+                        <p class="text-gray-500 font-medium">Cuplikan dokumentasi siswa-siswi 5B dalam membuat kerajinan celengan.</p>
+                    </div>
+
+                    <div class="rounded-xl overflow-hidden shadow-inner border border-gray-100 bg-black aspect-video flex items-center justify-center mb-4">
                         <video controls class="w-full h-full object-contain" preload="metadata">
                             <source src="assets/video/celengan/dokumen-website-kls5b-galeri.mp4" type="video/mp4">
                             Browser Anda tidak mendukung tag video.
                         </video>
                     </div>
-                    <div class="mt-8 text-left">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 font-bold text-xs mb-3 border border-blue-100">
-                            <i class="ph-fill ph-video-camera"></i> Dokumentasi Video
+                </div>
+            </div>
+
+            <!-- VIEW: PROJECT KOKURIKULER (Muncul jika ?id=kokurikuler) -->
+            <div id="view-kokurikuler" class="hidden fade-in-up">
+                <div class="max-w-5xl mx-auto mb-6">
+                    <a href="galeri.html" class="inline-flex items-center gap-2 text-gray-500 hover:text-madrasah-green font-bold bg-white px-4 py-2 rounded-full border border-gray-200 shadow-sm transition-colors">
+                        <i class="ph-bold ph-arrow-left"></i> Kembali ke Katalog
+                    </a>
+                </div>
+                
+                <div class="max-w-5xl mx-auto bg-white rounded-[2rem] p-4 md:p-8 shadow-premium border border-green-50 relative overflow-hidden mb-8">
+                    <div class="text-center mb-8">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-600 font-bold text-xs mb-3 border border-emerald-100">
+                            <i class="ph-fill ph-camera"></i> Project Kokurikuler
                         </div>
-                        <h3 class="text-2xl font-black text-gray-900 mb-3">Kreativitas Membuat Celengan</h3>
-                        <p class="text-gray-600 leading-relaxed text-lg">
-                            Video dokumentasi singkat yang menampilkan kreativitas siswa-siswi kelas 5B MIN 12 Jakarta dalam membuat kerajinan tangan berbentuk celengan. Karya ini dibuat dengan berbagai macam bentuk, warna, dan tema yang menarik.
-                        </p>
+                        <h3 class="text-3xl font-black text-gray-900 mb-2">Dokumentasi Project Kokurikuler</h3>
+                        <p class="text-gray-500 font-medium">Kumpulan potret hasil karya dan kreativitas siswa-siswi.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="group bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100 flex flex-col">
+                            <div class="overflow-hidden">
+                                <img src="assets/gambar/dokumentasi/IMG-20260525-WA0032.jpg" alt="Karya Kokurikuler 1" class="w-full h-64 md:h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5 bg-white flex-grow flex items-center">
+                                <p class="text-sm text-gray-700 font-medium leading-relaxed">Siswa-siswi 5B dengan senyum bangga menunjukkan hasil karya buatan mereka yang kreatif dan berwarna-warni.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="group bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100 flex flex-col">
+                            <div class="overflow-hidden">
+                                <img src="assets/gambar/dokumentasi/IMG-20260525-WA0037.jpg" alt="Karya Kokurikuler 2" class="w-full h-64 md:h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5 bg-white flex-grow flex items-center">
+                                <p class="text-sm text-gray-700 font-medium leading-relaxed">Keceriaan dan kebanggaan tak tersembunyi dari para siswa saat memamerkan karya seni kerajinan tangan mereka sendiri.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="group bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100 flex flex-col">
+                            <div class="overflow-hidden">
+                                <img src="assets/gambar/dokumentasi/IMG-20260525-WA0040.jpg" alt="Karya Kokurikuler 3" class="w-full h-64 md:h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5 bg-white flex-grow flex items-center">
+                                <p class="text-sm text-gray-700 font-medium leading-relaxed">Sebuah apresiasi untuk kreativitas, setiap detail karya dibuat dengan penuh ketelitian dan semangat gotong royong.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="group bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100 flex flex-col">
+                            <div class="overflow-hidden">
+                                <img src="assets/gambar/dokumentasi/IMG-20260525-WA0042.jpg" alt="Karya Kokurikuler 4" class="w-full h-64 md:h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-5 bg-white flex-grow flex items-center">
+                                <p class="text-sm text-gray-700 font-medium leading-relaxed">Semangat belajar dan berkreasi terpancar hangat, membuktikan bahwa proses belajar juga bisa sangat menyenangkan.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="group bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100 md:col-span-2 flex flex-col md:flex-row">
+                            <div class="overflow-hidden md:w-1/2">
+                                <img src="assets/gambar/dokumentasi/IMG-20260525-WA0046.jpg" alt="Karya Kokurikuler 5" class="w-full h-64 md:h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6 bg-white md:w-1/2 flex items-center justify-center">
+                                <p class="text-base text-gray-700 font-medium leading-relaxed text-center md:text-left">Momen kebersamaan kelas 5B dalam mewujudkan karya nyata. Kolaborasi dan kreativitas ini menjadi pengalaman berharga bagi para siswa untuk terus berkembang.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -335,13 +414,16 @@
 
         const viewList = document.getElementById('view-list');
         const viewPuisi = document.getElementById('view-puisi');
-        const viewVideo = document.getElementById('view-video');
+        const viewVideoSbdp = document.getElementById('view-video-sbdp');
+        const viewKokurikuler = document.getElementById('view-kokurikuler');
 
         if (viewId === 'puisi') {
             viewPuisi.classList.remove('hidden');
             initPuisi();
-        } else if (viewId === 'video-celengan') {
-            viewVideo.classList.remove('hidden');
+        } else if (viewId === 'video-sbdp') {
+            viewVideoSbdp.classList.remove('hidden');
+        } else if (viewId === 'kokurikuler') {
+            viewKokurikuler.classList.remove('hidden');
         } else {
             viewList.classList.remove('hidden');
         }
