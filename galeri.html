@@ -82,6 +82,25 @@
         @keyframes fadeInUp {
             to { opacity: 1; transform: translateY(0); }
         }
+        /* Mobile Menu Animation */
+        .mobile-menu-enter {
+            animation: slideDown 0.3s ease-out forwards;
+        }
+        .mobile-menu-exit {
+            animation: slideUp 0.3s ease-in forwards;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideUp {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-10px); }
+        }
+        #mobile-menu-btn i {
+            transition: all 0.3s ease-in-out;
+            display: inline-block;
+        }
 
 /* Abstract Pattern */
 .islamic-pattern {
@@ -553,14 +572,43 @@
         // Mobile Menu Toggle
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileIcon = mobileBtn.querySelector('i');
         
-        mobileBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        function toggleMenu() {
+            if (mobileMenu.classList.contains('hidden') || mobileMenu.classList.contains('mobile-menu-exit')) {
+                mobileMenu.classList.remove('hidden', 'mobile-menu-exit');
+                mobileMenu.classList.add('mobile-menu-enter');
+                
+                mobileIcon.style.transform = 'scale(0) rotate(-90deg)';
+                setTimeout(() => {
+                    mobileIcon.classList.remove('ph-list');
+                    mobileIcon.classList.add('ph-x');
+                    mobileIcon.style.transform = 'scale(1) rotate(0)';
+                }, 150);
+            } else {
+                mobileMenu.classList.remove('mobile-menu-enter');
+                mobileMenu.classList.add('mobile-menu-exit');
+                
+                mobileIcon.style.transform = 'scale(0) rotate(90deg)';
+                setTimeout(() => {
+                    mobileIcon.classList.remove('ph-x');
+                    mobileIcon.classList.add('ph-list');
+                    mobileIcon.style.transform = 'scale(1) rotate(0)';
+                }, 150);
+
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 280);
+            }
+        }
+
+        mobileBtn.addEventListener('click', toggleMenu);
 
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    toggleMenu();
+                }
             });
         });
     </script>
